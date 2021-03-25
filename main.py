@@ -1,13 +1,18 @@
 from deck import deck
 from card import card
 from field import field
-test = card("red", "hearts", 10)
-deck = deck()
+
+###### CODE IS A BLOODY MESS ######
+
+
+
+test = card("red", "hearts", 10,True)
+deck = deck(True)
 print(test.colour)
 print(deck.deck[0].suite)
 
 deck.print_deck()
-deck.shuffle_deck()
+#deck.shuffle_deck()
 print("PRINTING NEW SHUFFLED DECK")
 deck.print_deck()
 print(deck.size)
@@ -30,6 +35,10 @@ field.print_stack(5)
 print("STACK 7")
 field.print_stack(6)
 
+for x in field.rem_deck:
+	print(x.to_string(), end=' ')
+
+print()
 field.print_field()
 
 moves = field.compute_moves()
@@ -44,7 +53,7 @@ while(command != "Q" and command != "q"):
 	if(command.isnumeric()):
 		command_num = int(command)
 	move_card = []
-	if(command_num is not None):
+	if(command_num is not None and command_num < len(moves)):
 		for card1, card2 in moves[command_num].items():
 			if(isinstance(card2,card) and isinstance(card1, card)):
 				print(card1.to_string(), card2.to_string())
@@ -115,10 +124,16 @@ while(command != "Q" and command != "q"):
 						print('we should get a card here: ')
 						#print(field.stacks[move_card[1]][0])
 	elif(command == 'c' or command == 'C'):
+		if(window > len(field.rem_deck)):
+			window = len(field.rem_deck)
 		field.cycle_remaining(window)					
 		window-=3
 		if(window < 0):
 			window = len(field.rem_deck)
+
+	for x in field.rem_deck:
+		print(x.to_string(), end=' ')
+	print()
 	field.print_field()
 	moves = field.compute_moves()
 	command = input()

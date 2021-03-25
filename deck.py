@@ -1,16 +1,16 @@
 from card import card
 from Lib import random
 class deck:
-	def __init__(self):
+	def __init__(self, hideAll):
 		self.deck = []
 		for i in range(13):
-			self.deck.append(card("red","hearts",i+1))
+			self.deck.append(card("red","hearts",i+1,hideAll))
 		for i in range(13):
-			self.deck.append(card("red","diamonds",i+1))
+			self.deck.append(card("red","diamonds",i+1,hideAll))
 		for i in range(13):
-			self.deck.append(card("black","clubs",i+1))
+			self.deck.append(card("black","clubs",i+1,hideAll))
 		for i in range(13):
-			self.deck.append(card("black","spades",i+1))
+			self.deck.append(card("black","spades",i+1,hideAll))
 		self.size = len(self.deck)
 	def print_deck(self):
 		for card in self.deck:

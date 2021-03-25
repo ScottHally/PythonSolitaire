@@ -1,0 +1,217 @@
+bug (below):
+not really a bug but mostly unnecessary option of moving king to empty space
+probably just need a check
+
+
+Remaining cards: [ 2C 10D 6H ]
+  0 : JC to QD
+  1 : 9D to 10C
+  2 : 8S to 9D
+C/c : cycle remaining cards
+1
+9D 10C
+FOUND CARD IN STACK: 2
+FOUND CARD IN STACK: 4
+[ 4H ]
+KS              KH      **      **      **      **
+QH                      **      **      **      **
+JC                      **      **      **      **
+10H                     JD      **      **      **
+                        10C     QD      6D      **
+                        9D              5S      **
+                                                8S
+                                                7D
+                                                6S
+                                                5H
+                                                4C
+
+
+Remaining cards: [ 2C 10D 6H ]
+  0 : JC to QD
+  1 : KH to empty space 1
+  2 : 8S to 9D
+C/c : cycle remaining cards
+
+things to add:
+ - ability to move cards from home to the field
+ - better testing cases (pre defined siutations and deals rather than playing game the whole way through and testing random data)
+
+
+ bugs to fix:
+ - when inputting an option that is not listed (out of range), program crashes with
+    out of range error
+- cards dont cycle properly when there are less than 3 left to draw
+    - ex: when there are 2 left to draw, code goes back to front instead of drawing 
+      the next 2
+
+
+BUG BIG:
+
+PS C:\Users\scott\Documents\python_solitaire> python main.py
+red
+hearts
+**
+**
+**
+**
+**
+**
+**
+**
+**
+**
+**
+**
+**
+**
+**
+**
+**
+**
+**
+**
+**
+**
+**
+**
+**
+**
+**
+**
+**
+**
+**
+**
+**
+**
+**
+**
+**
+**
+**
+**
+**
+**
+**
+**
+**
+**
+**
+**
+**
+**
+**
+**
+PRINTING NEW SHUFFLED DECK
+**
+**
+**
+**
+**
+**
+**
+**
+**
+**
+**
+**
+**
+**
+**
+**
+**
+**
+**
+**
+**
+**
+**
+**
+**
+**
+**
+**
+**
+**
+**
+**
+**
+**
+**
+**
+**
+**
+**
+**
+**
+**
+**
+**
+**
+**
+**
+**
+**
+**
+**
+**
+52
+STACK 1
+6H
+STACK 2
+**
+JH
+STACK 3
+**
+**
+10C
+STACK 4
+**
+**
+**
+6C
+STACK 5
+**
+**
+**
+**
+7S
+STACK 6
+**
+**
+**
+**
+**
+QC
+STACK 7
+**
+**
+**
+**
+**
+**
+8H
+[ ]
+6H      **      **      **      **      **      **
+        JH      **      **      **      **      **
+                10C     **      **      **      **
+                        6C      **      **      **
+                                7S      **      **
+                                        QC      **
+                                                8H
+
+
+
+
+
+
+Remaining cards: [ ** ]
+  0 : 6H to 7S
+  1 : JH to QC
+  2 : 10C to JH
+  3 : 7S to 8H
+  4 : ** to home
+C/c : cycle remaining cards
+
+
+IT IS AN ACE THERE BUT NEED TO KNOOOW

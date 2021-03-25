@@ -1,10 +1,10 @@
 class card:
 
-	def __init__(self,colour,suite,value):
+	def __init__(self,colour,suite,value, isHidden):
 		self.colour = colour
 		self.suite = suite
 		self.value = value
-		self.isHidden = True
+		self.isHidden = isHidden
 
 	def to_string(self):
 		num = self.value

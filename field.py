@@ -40,7 +40,7 @@ class field:
 				print(self.home[x][-1].to_string(), end=' ')
 		print(']')
 
-		for i in range(13):
+		for i in range(20):
 			for j in range(7):
 				if(i < len(self.stacks[j])):
 					last = len(self.stacks[j]) - 1
@@ -89,7 +89,9 @@ class field:
 				empties.append(i)
 			else:
 				last_card = self.stacks[i][-1]
+				#print('last card is:   ' + last_card.to_string())
 			for card in self.stacks[i]:
+				#print("screwy card:. ... " + card.to_string())
 				exists = False
 				ace_exists = False
 				found_spot = False
@@ -116,16 +118,16 @@ class field:
 								valid_moves[move_count] = card.to_string() + ' to home'
 								move_table.append(dict([(card, -1)]))
 								move_count+=1
-							else:
-								for x in self.home:
-									if(len(self.home[x]) > 0):
-										if(found_spot == False):
-											if(card.value == self.home[x][-1].value + 1 and card.suite == self.home[x][-1].suite and card == last_card):
-												valid_moves[move_count] = card.to_string() + ' to home'
-												move_table.append(dict([(card, -1)]))
-												move_count+=1
-												found_spot = True
-
+							#else:
+							
+				for x in self.home:
+					if(len(self.home[x]) > 0):
+						if(found_spot == False):
+							if(card.value == self.home[x][-1].value + 1 and card.suite == self.home[x][-1].suite and card == last_card):
+								valid_moves[move_count] = card.to_string() + ' to home'
+								move_table.append(dict([(card, -1)]))
+								move_count+=1
+								found_spot = True
 #fucking use version  control, dude
 
 		
@@ -173,17 +175,24 @@ class field:
 		return move_table
 
 	def cycle_remaining(self,window):
-		chunk = self.rem_deck[window-3:window]
-		#print("PRINTING CHUNK")
+		print('window is:   ' + str(window));
+		print('window - 3 is:   ' + str(window-3))
+		if(window == 1):
+			chunk = self.rem_deck[window - 1: window + 2]
+		elif(window == 2):
+			chunk = self.rem_deck[window - 2: window + 1]
+		else:
+			chunk = self.rem_deck[window-3:window]
+		print("PRINTING CHUNK")
 		for card in chunk:
 			card.isHidden = False
-			#print(card.to_string())
+			print(card.to_string())
 
-		#print('PRINTING INVERSE OF CHUNK')
+		print('PRINTING INVERSE OF CHUNK')
 		inverse = list(set(self.rem_deck) - set(chunk))
 		for card in inverse:
 			card.isHidden = True
-			#print(card.to_string())
+			print(card.to_string())
 		
 
 	def get_window(self):
@@ -196,6 +205,6 @@ class field:
 				chunk = self.rem_deck[pos:pos+3]
 
 		if(allHidden == True):
-			chunk = self.rem_deck[0:1]
+			chunk = self.rem_deck[0:0]
 		chunk.reverse()
 		return chunk
