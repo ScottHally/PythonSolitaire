@@ -12,7 +12,7 @@ print(test.colour)
 print(deck.deck[0].suite)
 
 deck.print_deck()
-#deck.shuffle_deck()
+deck.shuffle_deck()
 print("PRINTING NEW SHUFFLED DECK")
 deck.print_deck()
 print(deck.size)
@@ -136,4 +136,8 @@ while(command != "Q" and command != "q"):
 	print()
 	field.print_field()
 	moves = field.compute_moves()
+	isGameWon = field.check_home()
+	if(isGameWon):
+		print("WINNER!!!")
+		exit()
 	command = input()

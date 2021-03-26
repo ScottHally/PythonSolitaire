@@ -208,3 +208,14 @@ class field:
 			chunk = self.rem_deck[0:0]
 		chunk.reverse()
 		return chunk
+
+	def check_home(self):
+		isComplete = False
+
+		for x in self.home:
+			if(len(self.home[x]) == 13):
+				isComplete = True
+			else:
+				isComplete = False
+
+		return isComplete

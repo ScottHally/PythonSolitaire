@@ -9,6 +9,16 @@ class card:
 	def to_string(self):
 		num = self.value
 		s = self.suite[0]
+
+		if(s == 's'):
+			s = '\u2660'
+		elif(s == 'h'):
+			s = '\u2661'
+		elif(s == 'd'):
+			s = '\u2662'
+		else:
+			s = '\u2663'
+
 		if(num == 1):
 			num = 'A'
 		elif(num == 11):
