@@ -32,7 +32,7 @@ class field:
 		for card in self.stacks[index]:
 			print(card.to_string())
 
-	# may need to change this for dymanics
+	# may need to change this for dynamics
 	def print_field(self):
 		print('[ ', end='')
 		for x in self.home:
@@ -40,6 +40,8 @@ class field:
 				print(self.home[x][-1].to_string(), end=' ')
 		print(']')
 
+
+		# max cards in a stack are 20 at worst, messes with printing though
 		for i in range(20):
 			for j in range(7):
 				if(i < len(self.stacks[j])):
@@ -59,6 +61,8 @@ class field:
 			print(card1.to_string() + ' ', end='')
 		print(']')
 
+		# this function is way too large
+
 	def compute_moves(self):
 		moves = []
 		valid_moves = {}
@@ -67,23 +71,7 @@ class field:
 		empties = []
 		exists = False
 		ace_exists = False
-		#for i in self.stacks:
-		#	if(len(self.stacks[i]) != 0):
-		#		for card in self.stacks[i]:
-		#			if(card.isHidden == False):
-		#				moves.append(card)
 
-		#for i in range(7):
-		#	for j in range(7):
-
-		#	for card in self.stacks[i]:
-		#		for card2 in self.stacks[i]:
-		#			if(card.isHidden == False and card2.isHidden == False):
-		#				if(card.value == card2.value -1):
-		#					if(card.colour != card2.colour):
-		#						valid_moves[move_count] = card.to_string() + ' to ' + card2.to_string()
-		#						move_table.append(dict([(card, card2)]))
-		#						move_count += 1
 		for i in range(7):
 			if(len(self.stacks[i]) == 0):
 				empties.append(i)
@@ -128,17 +116,7 @@ class field:
 								move_table.append(dict([(card, -1)]))
 								move_count+=1
 								found_spot = True
-#fucking use version  control, dude
 
-		
-		#for i in range(13):
-		#	for j in range(7):
-		#		card = self.stacks[j][i]
-		#		if(moves[i].value == moves[j].value - 1):
-		#			if(moves[i].colour != moves[j].colour):
-		#				valid_moves[move_count] = moves[i].to_string() + ' to ' + moves[j].to_string()
-		#				move_table.append(dict([(moves[i], moves[j])]))
-		#				move_count += 1
 		chunk = self.get_window()
 		#for card in chunk:
 		if(len(chunk) > 0):
@@ -175,24 +153,24 @@ class field:
 		return move_table
 
 	def cycle_remaining(self,window):
-		print('window is:   ' + str(window));
-		print('window - 3 is:   ' + str(window-3))
+		#print('window is:   ' + str(window));
+		#print('window - 3 is:   ' + str(window-3))
 		if(window == 1):
 			chunk = self.rem_deck[window - 1: window + 2]
 		elif(window == 2):
 			chunk = self.rem_deck[window - 2: window + 1]
 		else:
 			chunk = self.rem_deck[window-3:window]
-		print("PRINTING CHUNK")
+		#print("PRINTING CHUNK")
 		for card in chunk:
 			card.isHidden = False
-			print(card.to_string())
+			#print(card.to_string())
 
-		print('PRINTING INVERSE OF CHUNK')
+		#print('PRINTING INVERSE OF CHUNK')
 		inverse = list(set(self.rem_deck) - set(chunk))
 		for card in inverse:
 			card.isHidden = True
-			print(card.to_string())
+			#print(card.to_string())
 		
 
 	def get_window(self):
